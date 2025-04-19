@@ -1,10 +1,13 @@
+'use client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { BsChatRightHeartFill } from 'react-icons/bs'
 
 const Navbar = () => {
+  const currentPath = usePathname()
   const links = [
     { label: 'Dashboard', href: '/' },
-    { label: 'Galaan', href: '/' },
+    { label: 'Galaan', href: '/galaan' },
   ]
 
   return (
@@ -17,8 +20,10 @@ const Navbar = () => {
           {links.map((link) => (
             <Link
               key={link.href}
-              className='text-zinc-800 hover:text-emerald-500 transition-colors duration-300'
-              href='/'
+              className={`${
+                link.href === currentPath ? 'text-teal-900' : 'text-zinc-500'
+              } hover:text-teal-900 transition-colors duration-300`}
+              href={link.href}
             >
               {link.label}
             </Link>
